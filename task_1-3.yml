@@ -1,0 +1,16 @@
+---
+- hosts: all
+  become: yes
+  name: task_1-3
+
+  vars:
+    motd_message: Hello Maks =)
+
+  tasks:
+    - name: Set MOTD
+      copy:
+        content: "{{ motd_message }}"
+        dest: /etc/motd
+        owner: root
+        group: root
+        mode: '0644'

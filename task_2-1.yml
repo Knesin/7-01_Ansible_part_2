@@ -1,0 +1,22 @@
+---
+- hosts: all
+  become: yes
+  name: task_1-3
+
+  vars:
+    motd_message: Хорошего дня системному администратору от Максима
+
+  tasks:
+    - name: Set MOTD2
+      copy:
+        content: |
+          **************************************
+          IP       : {{ ansible_default_ipv4.address }}
+          Hostname : {{ ansible_hostname }}
+         
+          {{ motd_message }}
+          **************************************
+        dest: /etc/motd
+        owner: root
+        group: root
+        mode: '0644'

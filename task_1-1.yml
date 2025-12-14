@@ -1,0 +1,27 @@
+---
+- hosts: all
+  become: yes
+  name: task_1-1
+
+  vars:
+    download_path: "/tmp/apache.tgz"
+    extract_dir: "/tmp/extract"
+
+  tasks:
+    - name: Download archive
+      get_url:
+        url: "https://dlcdn.apache.org/kafka/4.1.1/kafka-4.1.1-src.tgz"
+        dest: "{{ download_path }}"
+        mode: '0644'
+
+    - name: Create directory
+      file:
+        path: "{{ extract_dir }}"
+        state: directory
+        mode: '0755'
+
+    - name: Extract archive
+      unarchive:
+        src: "{{ download_path }}"
+        dest: "{{ extract_dir }}"
+        remote_src: yes

@@ -1,0 +1,13 @@
+---
+- hosts: all
+  become: yes
+  name: task_1-1_check
+
+  tasks:
+    - name: Show directory content using ls
+      shell: ls -la /tmp/extract
+      register: ls_output
+
+    - name: Print ls output
+      debug:
+        msg: "{{ ls_output.stdout_lines }}"

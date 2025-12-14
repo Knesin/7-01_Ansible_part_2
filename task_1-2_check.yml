@@ -1,0 +1,15 @@
+---
+- hosts: all
+  become: yes
+  name: task_1-2_check
+
+  tasks:
+    - name: Check status
+      command: systemctl is-active tuned
+      register: tuned_status
+      changed_when: false
+      failed_when: false
+
+    - name: Show status
+      debug:
+        msg: "Tuned service status: {{ tuned_status.stdout }}"
