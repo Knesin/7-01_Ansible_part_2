@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>System Information</title>
+</head>
+<body>
+    <h1>Server information</h1>
+
+    <ul>
+        <li><b>Hostname:</b> {{ ansible_hostname }}</li>
+        <li><b>Host IP address:</b> {{ ansible_host }}</li>
+        <li><b>IP address:</b> {{ ansible_default_ipv4.address }}</li>
+        <li><b>CPU cores:</b> {{ ansible_processor_vcpus }}</li>
+        <li><b>RAM (MB):</b> {{ ansible_memtotal_mb }}</li>
+        <li><b>Disk size (GB):</b>
+            {{ (ansible_devices[ansible_devices.keys() | list | first].size | regex_replace('GB','')) }}
+        </li>
+    </ul>
+</body>
+</html>
