@@ -11,8 +11,9 @@ Including an example of how to use your role (for instance, with variables passe
 - hosts: all
   become: yes
   name: task_3-1
+  
   roles:
-    apache
+    - apache
 
 License
 -------
